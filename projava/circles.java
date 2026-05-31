@@ -1,0 +1,33 @@
+package 自習用.projava;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Random;
+
+public class circles {
+    public static void main(String[] args) {
+        var rand = new Random();
+        var image = new BufferedImage(600, 400, BufferedImage.TYPE_INT_RGB);
+        var g = image.createGraphics();
+        for (int x = 0; x < 12; x++) {
+            for (int y = 0; y < 12 ; y++) {
+                int red = rand.nextInt(120,255);
+                int green = rand.nextInt(120,200);
+                int blue = rand.nextInt(120,200);
+
+                if (x == 11-y) {
+                    g.setColor(Color.orange);
+                } else {
+                    g.setColor(Color.WHITE);
+                }
+                g.fillOval(x * 30 + 50, y * 30 + 20, 25, 25);
+            }
+        }
+        var f = new JFrame("格子");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.add(new JLabel(new ImageIcon(image)));
+        f.pack();
+        f.setVisible(true);
+    }
+}
